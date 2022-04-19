@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Setup from './components/Setup';
 import Chat from './components/Chat';
-
+import { io } from 'socket.io-client';
+const socket = io.connect("http://localhost:3001");
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
   else{
     return(
       <div>
-          <Chat user = {name}></Chat>
+          <Chat user = {name} connect = {socket}></Chat>
       </div>
     )
   }

@@ -1,10 +1,10 @@
 import Message from "./Message";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
-const socket = io.connect("http://localhost:3001");
+
 
 function Chat(props){
-    
+   let socket = props.connect    
 
     const [messages, setMessages] = useState([]);
     const [sendMess, setSendMess] = useState();
@@ -22,6 +22,14 @@ function Chat(props){
     function handleChange(e){
         setSendMess(e.target.value);
     }
+   
+    // useEffect(() =>{
+    //      socket.on("Send",(message) =>{
+        
+    //     console.log(message)
+    // })
+        
+    // },[])
 
     const log = messages.map((message) =>
             <Message text = {message} user = {props.user}></Message>
